@@ -1,0 +1,86 @@
+/* CSS styles for the homepage */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    /* Light gray background */
+    color: #333;
+    /* Dark gray text color */
+}
+
+header {
+    background-color: #333;
+    /* Dark gray header background */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.info-section,
+.features-section,
+.image-section,
+.additional-info-section {
+    background-color: #fff;
+    /* White background */
+    padding: 50px 0;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    /* Dark gray heading color */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.image-section img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Shadow effect */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    /* Dark gray button background */
+    color: #fff;
+    /* White text color */
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+    /* Darker gray button background on hover */
+}
+
+footer {
+    background-color: #333;
+    /* Dark gray footer background */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    padding: 20px 0;
+}

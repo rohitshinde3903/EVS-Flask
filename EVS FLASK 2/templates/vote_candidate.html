@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Candidate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Vote Candidate</h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Candidates:</h2>
+            <form action="{{ url_for('vote_candidate') }}" method="post">
+                {% for candidate in candidates %}
+                <div class="candidate">
+                    <img src="{{ candidate.image }}" alt="{{ candidate.name }}" class="candidate-image">
+                    <div class="candidate-details">
+                        <p><strong>Name:</strong> {{ candidate.name }}</p>
+                        <p><strong>Category:</strong> {{ candidate.category }}</p>
+                        <p><strong>Class:</strong> {{ candidate.class }}</p>
+                        <p><strong>Department:</strong> {{ candidate.department }}</p>
+                        <!-- Add hidden input fields for candidate ID and voter ID -->
+                        <input type="hidden" name="candidate_id" value="{{ candidate.id }}">
+                        <input type="hidden" name="voter_id" value="{{ voter_id }}">
+                    </div>
+                    <!-- Move the button outside the candidate-details div -->
+                    <button type="submit" class="btn">Vote Me</button>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+</body>
+</html>

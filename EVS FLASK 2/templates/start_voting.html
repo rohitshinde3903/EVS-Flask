@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Voting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Start Voting</h1>
+    </header>
+
+    <main>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <div class="container">
+            <h2>Admin Password Required</h2>
+            <form action="{{ url_for('start_voting') }}" method="post">
+                <div class="form-group">
+                    <label for="password">Admin Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+</body>
+</html>

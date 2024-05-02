@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Voting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Electronic Voting System</h1>
+    </header>
+
+    <section class="info-section">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>This is a simple electronic voting system built with Flask. It allows users to securely cast their votes in various elections.</p>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2>Features</h2>
+            <ul>
+                <li>Secure and Reliable Voting</li>
+                <li>User-friendly Interface</li>
+                <li>Real-time Results</li>
+                <li>Multiple Authentication Methods</li>
+                <li>Accessibility Features</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="image-section">
+        <div class="container">
+            <img src="{{ url_for('static', filename='evs_image.jpg') }}" alt="Electronic Voting System Image">
+        </div>
+    </section>
+
+    <section class="additional-info-section">
+        <div class="container">
+            <h2>Additional Information</h2>
+            <p>For any inquiries or support, please contact our customer service team.</p>
+        </div>
+    </section>
+
+    <a href="{{ url_for('login') }}" class="btn">Login</a>
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

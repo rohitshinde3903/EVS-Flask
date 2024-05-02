@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voters</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Voters</h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Add New Voter</h2>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+
+            <form action="{{ url_for( 'voters') }}" method="post">
+                <div class="form-group ">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group ">
+                    <label for="class">Class:</label>
+                    <input type="text" id="class" name="class" required>
+                </div>
+                <div class="form-group ">
+                    <label for="department">Department:</label>
+                    <input type="text" id="department" name="department" required>
+                </div>
+                <div class="form-group ">
+                    <label for="erpid">ERP ID:</label>
+                    <input type="text" id="erpid" name="erpid" required>
+                </div>
+                <button type="submit" class="btn">Add Voter</button>
+            </form>
+        </div>
+
+        <div class="container">
+            <input type="text" id="search" placeholder="Search">
+            <table id="votersTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Department</th>
+                        <th>ERP ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate table rows with voter data -->
+                    {% for voter in voters %}
+                    <tr>
+                        <td>{{ voter.name }}</td>
+                        <td>{{ voter.class }}</td>
+                        <td>{{ voter.department }}</td>
+                        <td>{{ voter.erpid }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            let searchText = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#votersTable tbody tr');
+
+            rows.forEach(row => {
+                let name = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+                let class_ = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                let department = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                let erpid = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+
+                if (name.includes(searchText) || class_.includes(searchText) || department.includes(searchText) || erpid.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

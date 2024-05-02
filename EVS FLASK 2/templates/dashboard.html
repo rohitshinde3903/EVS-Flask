@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Dashboard</h1>
+    </header>
+
+    <nav class="menu">
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('candidates') }}">Candidates</a></li>
+            <li><a href="{{ url_for('voters') }}">Voters</a></li>
+            <li><a href="#">Authority (Users)</a></li>
+            <li><a href="#">Results</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h2>Main Screen</h2>
+            <a href="{{ url_for('start_voting') }}" class="start-voting-btn">Start Voting</a>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+</body>
+</html>

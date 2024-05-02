@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Candidates</h1>
+    </header>
+
+    <main>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <div class="container">
+            <h2>Add New Candidate</h2>
+            <form action="{{ url_for('candidates') }}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>  
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="class">Class:</label>
+                    <input type="text" id="class" name="class" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <input type="text" id="department" name="department" required>
+                </div>
+                <div class="form-group">
+                    <label for="erp_id">ERP ID:</label>
+                    <input type="text" id="erp_id" name="erp_id" required>
+                </div>
+                <button type="submit" class="btn">Add Candidate</button>
+            </form>
+        </div>
+    
+        <div class="container">
+            <h2>Existing Candidates</h2>
+            <input type="text" id="search" placeholder="Search by Name...">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Category</th>
+                        <th>Department</th>
+                        <th>ERP ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for candidate in candidates %}
+                    <tr>
+                        <td><img src="{{ candidate.image }}" alt="Candidate Image" width="50"></td>
+                        <td>{{ candidate.name }}</td>
+                        <td>{{ candidate.class }}</td>
+                        <td>{{ candidate.category }}</td>
+                        <td>{{ candidate.department }}</td>
+                        <td>{{ candidate.erp_id }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+
+
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            let searchText = this.value.toLowerCase();
+            let rows = document.querySelectorAll('tbody tr');
+    
+            rows.forEach(row => {
+                let name = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+                let class_ = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                let category = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                let department = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                let erpid = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+
+                if (name.includes(searchText)|| class_.includes(searchText)|| category.includes(searchText) || department.includes(searchText) || erpid.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

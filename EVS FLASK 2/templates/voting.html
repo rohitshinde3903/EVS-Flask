@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Voting</h1>
+    </header>
+
+    <main>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <div class="container">
+            <h2>Enter Your ERP ID to Vote</h2>
+            <form id="votingForm" action="{{ url_for('vote') }}" method="post">
+                <div class="form-group">
+                    <label for="erpid">ERP ID:</label>
+                    <input type="text" id="erpid" name="erpid" required>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+                
+
+            </form>
+
+            <table id="votersTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Department</th>
+                        <th>ERP ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populate table rows with voter data -->
+                    {% if voter_info %}
+                    <tr>
+                        <td>{{ voter_info[1] }}</td>
+                        <td>{{ voter_info[2] }}</td>
+                        <td>{{ voter_info[3] }}</td>
+                        <td>{{ voter_info[4] }}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            {% if voter_info %}
+            <form action="{{ url_for('vote_candidate') }}" method="post">
+                <input type="hidden" name="erp_id" value="{{ voter_info.erpid }}">
+                <button type="submit" class="btn">Cast My Vote</button>
+            </form>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            let searchText = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#votersTable tbody tr');
+
+            rows.forEach(row => {
+                let name = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+                let class_ = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                let department = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                let erpid = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+
+                if (name.includes(searchText) || class_.includes(searchText) || department.includes(searchText) || erpid.includes(searchText)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

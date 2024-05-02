@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Thank You!</h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <p>Your vote has been cast successfully.</p>
+            <a href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Electronic Voting System</p>
+    </footer>
+</body>
+</html>
